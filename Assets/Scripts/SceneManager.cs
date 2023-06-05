@@ -21,21 +21,19 @@ public class SceneManager : MonoBehaviour
     public GameObject startScreen;
     public GameObject playerScreen;
     public GameObject charackterScreen;
+    public GameObject blackScreen;
 
     public GameObject playerCharacter;
     public Material[] charactersMaterial;
 
-
     bool aiGame = false;
-
+    public TextMeshProUGUI playerTextUGUI;
     public Button marioButton;
     public Button luigiButton;
-    //public GameObject playerTextG;
-    //TextMeshPro playerText;
-    //public TextMeshPro playerText2;
+    public Button playerTextG;
     public Button characterDone;
-
-    Material[] playerChoseMaterial = new Material[2]; // listan som håller koll på vilka material spelarna har valt
+    public Material standardMaterial;
+    public static Material[] playerChoseMaterial = new Material[2]; // listan som håller koll på vilka material spelarna har valt
     int player = 0;
 
     // Start is called before the first frame update
@@ -51,20 +49,17 @@ public class SceneManager : MonoBehaviour
         startScreen.SetActive(true);
         playerScreen.SetActive(false);
         charackterScreen.SetActive(false);
+        blackScreen.SetActive(false);
 
         aIButton.onClick.AddListener(delegate { aiOrNot(true); });
         multiPlayerButton.onClick.AddListener(delegate { aiOrNot(false); });
 
         marioButton.onClick.AddListener(delegate { chooseCharacter("Mario"); });
         luigiButton.onClick.AddListener(delegate { chooseCharacter("Luigi"); });
+        playerTextUGUI.text = "Player";
 
-        //playerText = playerTextG.GetComponentInChildren<TextMeshPro>();
-        //Debug.Log(playerText.text);
-        //Debug.Log(playerText2.text);
-        //Debug.Log(playerTextG.GetComponentInChildren<TextMeshPro>());
-        //playerText.text = "Player";
-
-        characterDone.onClick.AddListener(delegate { moveOnToTheGame();  });
+        characterDone.onClick.AddListener(delegate { moveOnToTheGame();});
+        playerCharacter.GetComponent<MeshRenderer>().material = standardMaterial;
 
     }
 
@@ -77,20 +72,20 @@ void Update()
 
     void startTheGame()
     {
-        
         playerScreen.SetActive(true);
         startScreen.SetActive(false);
     }
 
     void aiOrNot(bool ai)
     {
+        Debug.Log(ai);
         playerScreen.SetActive(false);
         charackterScreen.SetActive(true);
         aiGame = ai; //om vi ska ha Ai i spelet eller inte. om inte är det fler spelare
 
-        if(ai)
+        if(ai == false)
         {
-            //playerText.text = "Player 1";
+            playerTextUGUI.text = "Player 1";
         }
     }
 
@@ -109,21 +104,35 @@ void Update()
     }
     void moveOnToTheGame()
     {
-        Debug.Log("done knapp");
-        Material material = playerCharacter.GetComponent<Material>();
+        Material material = playerCharacter.GetComponent<MeshRenderer>().material;
         playerChoseMaterial[player] = material;
-       
+        Debug.Log(material);
+
         if (aiGame == false){
-            Debug.Log("i if");
-            //playerText.text = "Player 2";
-            //playerCharacter.GetComponent<MeshRenderer>().material = "Lambert";
+            playerTextUGUI.text = "Player 2";
+            playerCharacter.GetComponent<MeshRenderer>().material = standardMaterial;
             player = 1;
             aiGame = true;
-            characterDone.GetComponent<Image>().color = new Color(1,0,0);
+            StartCoroutine(fadeCharacterScreen(false));
+            string chosenCharacter = material.name;
+            switch (chosenCharacter)
+            {
+                case "Mario (Instance)":
+                    Debug.Log("Mario var vald");
+                    marioButton.enabled = false;
+                    break;
+                case "Luigi (Instance)":
+                    Debug.Log("Luigi var vald");
+                    luigiButton.enabled = false;
+                    break;
+            }
             return;
         }
+        StartCoroutine(fadeCharacterScreen(true));
         UnityEngine.SceneManagement.SceneManager.LoadScene(1);
     }
+
+   
 
 
     void endGame()
@@ -131,5 +140,20 @@ void Update()
         Application.Quit();
     }
 
+    private IEnumerator fadeCharacterScreen(bool goToNextLevel)
+    {
+        charackterScreen.SetActive(false);
+        blackScreen.SetActive(true);
+        yield return new WaitForSeconds(2);
+        if (goToNextLevel)
+        {
+            yield break;
+        }
+        blackScreen.SetActive(false);
+        charackterScreen.SetActive(true);
+        
+        yield break;
+
+    }
 
 }
