@@ -3,9 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 //using UnityEngine.UIElements;
+
 
 public class SceneManager : MonoBehaviour
 {
@@ -28,9 +30,13 @@ public class SceneManager : MonoBehaviour
 
     public Button marioButton;
     public Button luigiButton;
-    public GameObject playerTextG;
-    TextMeshPro playerText;
+    //public GameObject playerTextG;
+    //TextMeshPro playerText;
+    //public TextMeshPro playerText2;
     public Button characterDone;
+
+    Material[] playerChoseMaterial = new Material[2]; // listan som håller koll på vilka material spelarna har valt
+    int player = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -51,7 +57,11 @@ public class SceneManager : MonoBehaviour
 
         marioButton.onClick.AddListener(delegate { chooseCharacter("Mario"); });
         luigiButton.onClick.AddListener(delegate { chooseCharacter("Luigi"); });
-        playerText = playerTextG.GetComponent<TextMeshPro>();
+
+        //playerText = playerTextG.GetComponentInChildren<TextMeshPro>();
+        //Debug.Log(playerText.text);
+        //Debug.Log(playerText2.text);
+        //Debug.Log(playerTextG.GetComponentInChildren<TextMeshPro>());
         //playerText.text = "Player";
 
         characterDone.onClick.AddListener(delegate { moveOnToTheGame();  });
@@ -80,7 +90,7 @@ void Update()
 
         if(ai)
         {
-            playerText.text = "Player 1";
+            //playerText.text = "Player 1";
         }
     }
 
@@ -96,16 +106,21 @@ void Update()
                 return;
             }
         }
-
     }
-
     void moveOnToTheGame()
     {
         Debug.Log("done knapp");
-        if(aiGame == false)
-        {
-            playerText.text = "Player 2";
+        Material material = playerCharacter.GetComponent<Material>();
+        playerChoseMaterial[player] = material;
+       
+        if (aiGame == false){
+            Debug.Log("i if");
+            //playerText.text = "Player 2";
             //playerCharacter.GetComponent<MeshRenderer>().material = "Lambert";
+            player = 1;
+            aiGame = true;
+            characterDone.GetComponent<Image>().color = new Color(1,0,0);
+            return;
         }
         UnityEngine.SceneManagement.SceneManager.LoadScene(1);
     }
