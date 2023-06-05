@@ -9,6 +9,8 @@ public class PickUpBox : MonoBehaviour
 
     [SerializeField] private Vector3 rotationDirection = new Vector3();
 
+    public float waitAmount = 60.0f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +25,26 @@ public class PickUpBox : MonoBehaviour
 
     private void FixedUpdate() {
         transform.Rotate(rotateSpeed * rotationDirection * Time.fixedDeltaTime);
+    }
+
+    public void HidePowerBox() {
+        StartCoroutine(hideThenShowBox());
+    }
+
+    IEnumerator hideThenShowBox()
+    {
+        gameObject.GetComponent<Renderer>().enabled = false;
+        GetComponent<BoxCollider>().enabled = false;
+        GetComponent <ParticleSystem>().Play ();
+        ParticleSystem.EmissionModule em = GetComponent<ParticleSystem>().emission;
+        em.enabled = true;
+        yield return new WaitForSeconds(1.0f);
+        // Destroy(gameObject, 1.0F);
+        // gameObject.SetActive(false);
+        yield return new WaitForSeconds(waitAmount);
+        // gameObject.SetActive(true);
+        gameObject.GetComponent<Renderer>().enabled = true;
+        GetComponent<BoxCollider>().enabled = true;
     }
 
 }

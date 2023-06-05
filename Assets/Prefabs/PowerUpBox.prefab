@@ -114,6 +114,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotateSpeed: 50
   rotationDirection: {x: 1, y: 1, z: 0}
+  waitAmount: 15
 --- !u!199 &9123426203013493198
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -270,7 +271,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 2
+      scalar: 1
       minScalar: 5
       maxCurve:
         serializedVersion: 2

@@ -22,12 +22,8 @@ public class PlayerPowerUpBox : MonoBehaviour
     private void OnTriggerEnter(Collider collidedBox) {
         if (collidedBox.transform.CompareTag("PickUpBox")) {
             Debug.Log("Power up!");     // Remove
-            collidedBox.gameObject.GetComponent<Renderer>().enabled = false;
-            collidedBox.GetComponent <ParticleSystem>().Play ();
-            ParticleSystem.EmissionModule em = collidedBox.GetComponent<ParticleSystem>().emission;
+            collidedBox.GetComponent<PickUpBox>().HidePowerBox();
             powerImage.RandomPowerUp();
-            em.enabled = true;
-            Destroy(collidedBox.gameObject, 1.0F);
         }
     }
 }
