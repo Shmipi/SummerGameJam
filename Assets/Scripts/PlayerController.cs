@@ -14,11 +14,14 @@ public class PlayerController : MonoBehaviour
 
     //steering
     private float steerDirection;
-    private float driftTime;
+    private float driftTime = 0;
+    private float boostTime = 0;
 
     bool driftLeft = false;
     bool driftRight = false;
     float outwardsDriftForce;
+
+    private bool isSliding;
 
     private bool touchingGround;
 
@@ -30,6 +33,8 @@ public class PlayerController : MonoBehaviour
         move();
         steer();
         groundNormalRotation();
+        drift();
+        boosts();
     }
     
     private void move(){
@@ -54,6 +59,24 @@ public class PlayerController : MonoBehaviour
 
         float steerAmount;
 
+        if(driftLeft && !driftRight){
+            steerDirection = Input.GetAxis("Horizontal") < 0 ? -1.5f : -0.5f;
+            transform.GetChild(0).localRotation = Quaternion.Lerp(transform.GetChild(0).localRotation, Quaternion.Euler(0, -20f, 0), 8f * Time.deltaTime);
+
+            if(isSliding && touchingGround){
+                rb.AddForce(transform.right * outwardsDriftForce * Time.deltaTime, ForceMode.Acceleration);
+            }
+        } else if(driftRight && !driftLeft){
+            steerDirection = Input.GetAxis("Horizontal") > 0 ? 1.5f : 0.5f;
+            transform.GetChild(0).localRotation = Quaternion.Lerp(transform.GetChild(0).localRotation, Quaternion.Euler(0, 20f, 0), 8f * Time.deltaTime);
+
+            if(isSliding && touchingGround){
+                rb.AddForce(transform.right * -outwardsDriftForce * Time.deltaTime, ForceMode.Acceleration);
+            }
+        } else {
+            transform.GetChild(0).localRotation = Quaternion.Lerp(transform.GetChild(0).localRotation, Quaternion.Euler(0, 0f, 0), 8f * Time.deltaTime);
+        }
+
         steerAmount = realSpeed > 30 ? realSpeed / 4 * steerDirection : steerAmount = realSpeed / 1.5f * steerDirection;
 
         steerDirVect = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y + steerAmount, transform.eulerAngles.z);
@@ -77,9 +100,11 @@ public class PlayerController : MonoBehaviour
             if(steerDirection > 0){
                 driftRight = true;
                 driftLeft = false;
+                Debug.Log("Drifting Right");
             } else if (steerDirection < 0){
                 driftRight = false;
                 driftLeft = true;
+                Debug.Log("Drifting Left");
             }
         }
 
@@ -90,7 +115,36 @@ public class PlayerController : MonoBehaviour
         }
 
         if(!Input.GetKeyDown(KeyCode.Space) || currentSpeed < 40){
-            
+            driftLeft = false;
+            driftRight = false;
+            isSliding = false;
+
+            //give boost
+            if(driftTime > 1.5 && driftTime < 4){
+                boostTime = 0.75f;
+            }
+            if(driftTime >= 4 && driftTime < 7){
+                boostTime = 1.5f;
+            }
+            if(driftTime >= 7){
+                boostTime = 2.5f;
+            }
+        }
+    }
+
+    private void boosts(){
+        boostTime -= Time.deltaTime;
+        if(boostTime > 0){
+            //call particle systems
+
+            maxSpeed = boostSpeed;
+            currentSpeed = Mathf.Lerp(currentSpeed, maxSpeed, 1 * Time.deltaTime);
+
+            Debug.Log("Zoomin!");
+        } else{
+            //stop particles
+
+            maxSpeed = boostSpeed - 20;
         }
     }
 }
