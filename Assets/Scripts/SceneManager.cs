@@ -50,6 +50,11 @@ public class SceneManager : MonoBehaviour
     public static Material[] playerChoseMaterial = new Material[2]; // listan som håller koll på vilka material spelarna har valt
     int player = 0;
 
+    public static SceneManager smInatance;
+    private void Awake()
+    {
+        smInatance = this;
+    }
     // Start is called before the first frame update
     void Start()
     {
