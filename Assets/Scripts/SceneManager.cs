@@ -22,6 +22,7 @@ public class SceneManager : MonoBehaviour
     public GameObject playerScreen;
     public GameObject charackterScreen;
     public GameObject blackScreen;
+    public GameObject levelScreen;
 
     public GameObject playerCharacter;
     public Material[] charactersMaterial;
@@ -36,6 +37,10 @@ public class SceneManager : MonoBehaviour
     public Button WaluigiButton;
     public Button BroserButton;
     public Button ToadButton;
+
+    public Button level1Button;
+    public Button level2Button;
+    public Button level3Button;
 
 
 
@@ -59,6 +64,7 @@ public class SceneManager : MonoBehaviour
         playerScreen.SetActive(false);
         charackterScreen.SetActive(false);
         blackScreen.SetActive(false);
+        levelScreen.SetActive(false);
 
         aIButton.onClick.AddListener(delegate { aiOrNot(true); });
         multiPlayerButton.onClick.AddListener(delegate { aiOrNot(false); });
@@ -71,6 +77,11 @@ public class SceneManager : MonoBehaviour
         WaluigiButton.onClick.AddListener(delegate { chooseCharacter("Waluigi"); });
         BroserButton.onClick.AddListener(delegate { chooseCharacter("Broser"); });
         ToadButton.onClick.AddListener(delegate { chooseCharacter("Toad"); });
+
+        level1Button.onClick.AddListener(delegate { levelNavigator(1); });
+        level2Button.onClick.AddListener(delegate { levelNavigator(2); });
+        level3Button.onClick.AddListener(delegate { levelNavigator(3); });
+
 
         playerTextUGUI.text = "Player";
 
@@ -94,7 +105,7 @@ void Update()
 
     void aiOrNot(bool ai)
     {
-        Debug.Log(ai);
+        Debug.Log("ai = " + ai);
         playerScreen.SetActive(false);
         charackterScreen.SetActive(true);
         aiGame = ai; //om vi ska ha Ai i spelet eller inte. om inte är det fler spelare
@@ -107,10 +118,10 @@ void Update()
 
     void chooseCharacter(string name)
     {
-        Debug.Log("kommer till metod");
+        //Debug.Log("kommer till metod");
         for(int i = 0; charactersMaterial.Length > 0; i++)
         {
-            Debug.Log(name + " material: " + charactersMaterial[i].name);
+            //Debug.Log(name + " material: " + charactersMaterial[i].name);
             if (charactersMaterial[i].name == name) {
                 
                 playerCharacter.GetComponent<MeshRenderer>().material = charactersMaterial[i];
@@ -122,7 +133,6 @@ void Update()
     {
         Material material = playerCharacter.GetComponent<MeshRenderer>().material;
         playerChoseMaterial[player] = material;
-        Debug.Log(material);
 
         if (aiGame == false){
             playerTextUGUI.text = "Player 2";
@@ -163,11 +173,14 @@ void Update()
             }
             return;
         }
-        StartCoroutine(fadeCharacterScreen(true));
-        UnityEngine.SceneManagement.SceneManager.LoadScene(1);
+        StartCoroutine(fadetoLevelScene());
+              
     }
 
-   
+    void levelNavigator(int level)
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene(level);
+    }
 
 
     void endGame()
@@ -187,6 +200,17 @@ void Update()
         blackScreen.SetActive(false);
         charackterScreen.SetActive(true);
         
+        yield break;
+
+    }
+
+    private IEnumerator fadetoLevelScene()
+    {
+        charackterScreen.SetActive(false);
+        blackScreen.SetActive(true);
+        yield return new WaitForSeconds(1);
+        blackScreen.SetActive(false);
+        levelScreen.SetActive(true);
         yield break;
 
     }
