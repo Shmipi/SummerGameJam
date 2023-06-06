@@ -5,14 +5,15 @@ using UnityEngine;
 public class PowerUpImage : MonoBehaviour
 {
 
-    public UnityEngine.UI.RawImage powerUpImage;
-    public Texture mushroomSpite;
-    public Texture shellSprite;
+    public UnityEngine.UI.Image powerUpImage;
+    public Sprite mushroomSpite;
+    public Sprite shellSprite;
 
     // Start is called before the first frame update
     void Start()
     {
-        powerUpImage.texture = null;
+        powerUpImage.sprite = null;
+        powerUpImage.enabled = false;
     }
 
     // Update is called once per frame
@@ -23,13 +24,14 @@ public class PowerUpImage : MonoBehaviour
 
     public void RandomPowerUp() {
         int powerNum = Random.Range(1, 3);
+        powerUpImage.enabled = true;
 
         if (powerNum == 1) {
-            powerUpImage.texture = mushroomSpite;
+            powerUpImage.sprite = mushroomSpite;
         }
 
         else if (powerNum == 2) {
-            powerUpImage.texture = shellSprite;
+            powerUpImage.sprite = shellSprite;
         }
     }
 }
