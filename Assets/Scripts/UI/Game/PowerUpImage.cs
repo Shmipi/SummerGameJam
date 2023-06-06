@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class PowerUpImage : MonoBehaviour
 {
-
-    public UnityEngine.UI.Image powerUpImage;
-    public Sprite mushroomSpite;
+    private UnityEngine.UI.Image powerUpImage;
+    public Sprite mushroomSprite;
     public Sprite shellSprite;
 
     // Start is called before the first frame update
     void Start()
     {
+        powerUpImage = gameObject.GetComponent<UnityEngine.UI.Image>();
         powerUpImage.sprite = null;
         powerUpImage.enabled = false;
     }
@@ -22,16 +22,20 @@ public class PowerUpImage : MonoBehaviour
         
     }
 
-    public void RandomPowerUp() {
-        int powerNum = Random.Range(1, 3);
+    public void setPowerImage(int x) {
         powerUpImage.enabled = true;
 
-        if (powerNum == 1) {
-            powerUpImage.sprite = mushroomSpite;
+        if (x == 1) {
+            powerUpImage.sprite = mushroomSprite;
         }
 
-        else if (powerNum == 2) {
+        else if (x == 2) {
             powerUpImage.sprite = shellSprite;
+        }
+
+        else if (x == 0) {
+            powerUpImage.sprite = null;
+            powerUpImage.enabled = false;
         }
     }
 }
