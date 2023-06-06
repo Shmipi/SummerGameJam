@@ -9,12 +9,14 @@ public class PickUpBox : MonoBehaviour
 
     [SerializeField] private Vector3 rotationDirection = new Vector3();
 
+    private bool shouldRotate;
+
     public float waitAmount = 60.0f;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        shouldRotate = true;
     }
 
     // Update is called once per frame
@@ -24,7 +26,9 @@ public class PickUpBox : MonoBehaviour
     }
 
     private void FixedUpdate() {
-        transform.Rotate(rotateSpeed * rotationDirection * Time.fixedDeltaTime);
+        if (shouldRotate) {
+            this.transform.Rotate(rotateSpeed * rotationDirection * Time.fixedDeltaTime);
+        }
     }
 
     public void HidePowerBox() {
@@ -35,6 +39,7 @@ public class PickUpBox : MonoBehaviour
     {
         gameObject.GetComponent<Renderer>().enabled = false;
         GetComponent<BoxCollider>().enabled = false;
+        shouldRotate = false;
         GetComponent <ParticleSystem>().Play ();
         ParticleSystem.EmissionModule em = GetComponent<ParticleSystem>().emission;
         em.enabled = true;
@@ -44,6 +49,7 @@ public class PickUpBox : MonoBehaviour
         yield return new WaitForSeconds(waitAmount);
         // gameObject.SetActive(true);
         gameObject.GetComponent<Renderer>().enabled = true;
+        shouldRotate = true;
         GetComponent<BoxCollider>().enabled = true;
     }
 
