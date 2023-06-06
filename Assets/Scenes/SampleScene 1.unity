@@ -1018,6 +1018,22 @@ PrefabInstance:
       propertyPath: m_margin.x
       value: -15.52832
       objectReference: {fileID: 0}
+    - target: {fileID: 1059123476, guid: e8962a496092ad2428330fad8f72c715, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0.5188679
+      objectReference: {fileID: 0}
+    - target: {fileID: 1059123476, guid: e8962a496092ad2428330fad8f72c715, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.5188679
+      objectReference: {fileID: 0}
+    - target: {fileID: 1059123476, guid: e8962a496092ad2428330fad8f72c715, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0.5188679
+      objectReference: {fileID: 0}
+    - target: {fileID: 1059123476, guid: e8962a496092ad2428330fad8f72c715, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4286874756
+      objectReference: {fileID: 0}
     - target: {fileID: 1305644890363006883, guid: e8962a496092ad2428330fad8f72c715, type: 3}
       propertyPath: m_Name
       value: PlayerCanvas
