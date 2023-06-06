@@ -30,6 +30,15 @@ public class SceneManager : MonoBehaviour
     public TextMeshProUGUI playerTextUGUI;
     public Button marioButton;
     public Button luigiButton;
+    public Button Shy_guyButton;
+    public Button Inkling_girlButton;
+    public Button WarioButton;
+    public Button WaluigiButton;
+    public Button BroserButton;
+    public Button ToadButton;
+
+
+
     public Button playerTextG;
     public Button characterDone;
     public Material standardMaterial;
@@ -56,6 +65,13 @@ public class SceneManager : MonoBehaviour
 
         marioButton.onClick.AddListener(delegate { chooseCharacter("Mario"); });
         luigiButton.onClick.AddListener(delegate { chooseCharacter("Luigi"); });
+        Shy_guyButton.onClick.AddListener(delegate { chooseCharacter("Shy_guy"); });
+        Inkling_girlButton.onClick.AddListener(delegate { chooseCharacter("Inkling_Girl"); });
+        WarioButton.onClick.AddListener(delegate { chooseCharacter("Wario"); });
+        WaluigiButton.onClick.AddListener(delegate { chooseCharacter("Waluigi"); });
+        BroserButton.onClick.AddListener(delegate { chooseCharacter("Broser"); });
+        ToadButton.onClick.AddListener(delegate { chooseCharacter("Toad"); });
+
         playerTextUGUI.text = "Player";
 
         characterDone.onClick.AddListener(delegate { moveOnToTheGame();});
@@ -125,6 +141,25 @@ void Update()
                     Debug.Log("Luigi var vald");
                     luigiButton.enabled = false;
                     break;
+                case "Shy_guy (Instance)":
+                    Shy_guyButton.enabled = false;
+                    break;
+                case "Inkling_Girl (Instance)":
+                    Inkling_girlButton.enabled = false;
+                    break;
+                case "Wario (Instance)":
+                    WarioButton.enabled = false;
+                    break;
+                case "Waluigi (Instance)":
+                    WaluigiButton.enabled = false;
+                    break;
+                case "Broser (Instance)":
+                    BroserButton.enabled = false;
+                    break;
+                case "Toad (Instance)":
+                    ToadButton.enabled = false;
+                    break;
+
             }
             return;
         }
@@ -144,7 +179,7 @@ void Update()
     {
         charackterScreen.SetActive(false);
         blackScreen.SetActive(true);
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1);
         if (goToNextLevel)
         {
             yield break;
