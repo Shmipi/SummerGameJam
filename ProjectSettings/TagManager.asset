@@ -5,11 +5,12 @@ TagManager:
   serializedVersion: 2
   tags:
   - PickUpBox
+  - Cart
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Cart
   - Water
   - UI
   - 
