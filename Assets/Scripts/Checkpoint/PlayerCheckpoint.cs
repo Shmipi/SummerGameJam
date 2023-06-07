@@ -14,6 +14,7 @@ public class PlayerCheckpoint : MonoBehaviour
         if (currentLap >= maxLap) {
             winCondition();
         }
+
     }
 
     private void winCondition() {

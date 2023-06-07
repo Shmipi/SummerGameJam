@@ -15,7 +15,7 @@ public class PlayerPowerUpBox : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerController = GetComponent<PlayerController>();
+        playerController = GetComponentInParent<PlayerController>();
         if (playerController.secondPlayer == false)
         {
             GameObject pc = GameObject.Find("PlayerCanvas");
@@ -33,7 +33,6 @@ public class PlayerPowerUpBox : MonoBehaviour
     void Update()
     {
         // Here Ludvig
-
         if (playerController.secondPlayer == false)
         {
             if (Input.GetKey("e"))

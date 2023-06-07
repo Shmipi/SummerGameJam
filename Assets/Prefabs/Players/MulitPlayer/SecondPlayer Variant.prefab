@@ -71,5 +71,25 @@ PrefabInstance:
       propertyPath: textPlace
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 7922612489442387458, guid: 3454a1a7cc67f04418a87b16dc389c43, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9975641
+      objectReference: {fileID: 0}
+    - target: {fileID: 7922612489442387458, guid: 3454a1a7cc67f04418a87b16dc389c43, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.06975647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7922612489442387458, guid: 3454a1a7cc67f04418a87b16dc389c43, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7922612489442387458, guid: 3454a1a7cc67f04418a87b16dc389c43, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7922612489442387458, guid: 3454a1a7cc67f04418a87b16dc389c43, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3454a1a7cc67f04418a87b16dc389c43, type: 3}
