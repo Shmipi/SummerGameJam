@@ -10,22 +10,46 @@ public class PlayerPowerUpBox : MonoBehaviour
     private PowerUpImage powerImage;
 
     private int powerNum = 0;
+    PlayerController playerController;
 
     // Start is called before the first frame update
     void Start()
     {
-        GameObject pc = GameObject.Find("PlayerCanvas");
-        powerImage = pc.GetComponentInChildren<PowerUpImage>();
+        playerController = GetComponent<PlayerController>();
+        if (playerController.secondPlayer == false)
+        {
+            GameObject pc = GameObject.Find("PlayerCanvas");
+            powerImage = pc.GetComponentInChildren<PowerUpImage>();
+        }
+        else
+        {
+            GameObject pc = GameObject.Find("PlayerCanvas Variant");
+            powerImage = pc.GetComponentInChildren<PowerUpImage>();
+        }
+               
     }
 
     // Update is called once per frame
     void Update()
     {
-            // Here Ludvig
-        if (Input.GetKey("e"))
+        // Here Ludvig
+
+        if (playerController.secondPlayer == false)
         {
-            usePower();
+            if (Input.GetKey("e"))
+            {
+                usePower();
+            }
         }
+        else
+        {
+            if (Input.GetKey(KeyCode.RightShift))
+            {
+                usePower();
+            }
+        }
+
+      
     }
 
     private void OnTriggerEnter(Collider collidedBox) {
