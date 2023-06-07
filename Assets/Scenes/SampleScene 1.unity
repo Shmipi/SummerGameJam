@@ -388,6 +388,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!4 &721525939 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 618672817659959619, guid: 6a94c951104fb6e42b84154b2b61402d, type: 3}
+  m_PrefabInstance: {fileID: 875256370}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &844114489
 GameObject:
   m_ObjectHideFlags: 0
@@ -572,9 +577,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f00e99d79bebdf46b44e6131c8351bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPostiona: {fileID: 0}
-  playerCartPositon: {fileID: 0}
-  orgCart: {fileID: 0}
+  playerPostiona: {fileID: 721525939}
+  playerCartPositon: {fileID: 1434605241}
+  orgCart: {fileID: 1434605240}
   mario: {fileID: 4826810022871172224, guid: b9eb896db24854e44848ac5db4cf5eba, type: 3}
   luigi: {fileID: 4826810022871172224, guid: 62196d418c0222341a01beea0fa976cd, type: 3}
   wario: {fileID: 4826810022871172224, guid: 0053ac47e2f1bf747a440522b059f68c, type: 3}
@@ -584,6 +589,16 @@ MonoBehaviour:
   inkling: {fileID: 4826810022871172224, guid: 75e6dfdbe7123d045855a20803b3e61e, type: 3}
   shy_guy: {fileID: 4826810022871172224, guid: f4afe81f551552d44b32c4902c7763f8, type: 3}
   firtsPlayersCamera: {fileID: 0}
+--- !u!1 &1434605240 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8263878875854447042, guid: 6a94c951104fb6e42b84154b2b61402d, type: 3}
+  m_PrefabInstance: {fileID: 875256370}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1434605241 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8783394355010927480, guid: 6a94c951104fb6e42b84154b2b61402d, type: 3}
+  m_PrefabInstance: {fileID: 875256370}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1630107222
 GameObject:
   m_ObjectHideFlags: 0
