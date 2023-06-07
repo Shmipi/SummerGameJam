@@ -314,6 +314,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxSpeed: 60
   boostSpeed: 80
+  secondPlayer: 0
 --- !u!114 &6816255663885383083
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -326,9 +327,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f72eda046b5395e47983749fc4bfe679, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkPoints: []
   currentCheckPoint: 0
-  maxLap: 3
+  currentLap: 0
+  maxLap: 2
 --- !u!65 &4304086550387364263
 BoxCollider:
   m_ObjectHideFlags: 0
