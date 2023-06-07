@@ -27,26 +27,24 @@ public class GameHandeler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log(playerPostiona);
+        
         playersMaterial = SceneManager.playerChoseMaterial;
 
-        GameObject firstPlayer = Instantiate(getPlayer("Wario (Instance)"), playerPostiona);
-        firstPlayer.transform.rotation = playerCartPositon.rotation;
-        firstPlayer.transform.position = playerCartPositon.position;
         //Destroy(orgCart);
 
-        /*
+
         if (playersMaterial[0] != null)
         {
             GameObject firstPlayer = Instantiate(getPlayer(playersMaterial[0].name), playerPostiona);
             firstPlayer.transform.rotation = playerCartPositon.rotation;
             firstPlayer.transform.position = playerCartPositon.position;
+            Destroy(orgCart);
         }
         if (playersMaterial[1] != null)
         {
             Instantiate(getPlayer(playersMaterial[1].name), playerPostiona);
         }
-        */
+        
 
     }
 
