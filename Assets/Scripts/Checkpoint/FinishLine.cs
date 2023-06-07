@@ -13,7 +13,9 @@ public class FinishLine : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider collider) {
+        
         if (collider.CompareTag("Player")) {
+            
             PlayerCheckpoint player = collider.GetComponent<PlayerCheckpoint>();
             if (player.currentCheckPoint >= lastCheckPoint) {
                 player.currentCheckPoint = 0;
