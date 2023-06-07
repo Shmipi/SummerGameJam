@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -375,7 +375,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   allPlayers: 10
-  textPlace: {fileID: 1059123476}
+  textPlace: {fileID: 0}
 --- !u!1001 &582762464
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -736,17 +736,11 @@ Transform:
   m_Father: {fileID: 237892426}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 17.148, y: 0, z: 0}
---- !u!114 &1059123476 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1059123476, guid: e8962a496092ad2428330fad8f72c715, type: 3}
-  m_PrefabInstance: {fileID: 5599171068710806354}
+--- !u!1 &1084439300 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4826810022871172224, guid: b9eb896db24854e44848ac5db4cf5eba, type: 3}
+  m_PrefabInstance: {fileID: 1823404532}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1330816573
 GameObject:
   m_ObjectHideFlags: 0
@@ -793,6 +787,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerPostiona: {fileID: 237892426}
   playerCartPositon: {fileID: 1823404533}
+  orgCart: {fileID: 1084439300}
   mario: {fileID: 4826810022871172224, guid: b9eb896db24854e44848ac5db4cf5eba, type: 3}
   luigi: {fileID: 4826810022871172224, guid: 62196d418c0222341a01beea0fa976cd, type: 3}
   wario: {fileID: 4826810022871172224, guid: 0053ac47e2f1bf747a440522b059f68c, type: 3}
@@ -1064,30 +1059,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1059123476, guid: e8962a496092ad2428330fad8f72c715, type: 3}
-      propertyPath: m_text
-      value: 10th
-      objectReference: {fileID: 0}
-    - target: {fileID: 1059123476, guid: e8962a496092ad2428330fad8f72c715, type: 3}
-      propertyPath: m_margin.x
-      value: -15.52832
-      objectReference: {fileID: 0}
-    - target: {fileID: 1059123476, guid: e8962a496092ad2428330fad8f72c715, type: 3}
-      propertyPath: m_fontColor.b
-      value: 0.5188679
-      objectReference: {fileID: 0}
-    - target: {fileID: 1059123476, guid: e8962a496092ad2428330fad8f72c715, type: 3}
-      propertyPath: m_fontColor.g
-      value: 0.5188679
-      objectReference: {fileID: 0}
-    - target: {fileID: 1059123476, guid: e8962a496092ad2428330fad8f72c715, type: 3}
-      propertyPath: m_fontColor.r
-      value: 0.5188679
-      objectReference: {fileID: 0}
-    - target: {fileID: 1059123476, guid: e8962a496092ad2428330fad8f72c715, type: 3}
-      propertyPath: m_fontColor32.rgba
-      value: 4286874756
-      objectReference: {fileID: 0}
     - target: {fileID: 1305644890363006883, guid: e8962a496092ad2428330fad8f72c715, type: 3}
       propertyPath: m_Name
       value: PlayerCanvas
