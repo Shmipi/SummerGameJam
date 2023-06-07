@@ -31,8 +31,11 @@ public class GameHandeler : MonoBehaviour
        
        
         playersMaterial = SceneManager.playerChoseMaterial;
+        GameObject firstPlayer = Instantiate(getPlayer("Inkling_Girl (Instance)"), playerPostiona);
+        firstPlayer.transform.rotation = playerCartPositon.rotation;
+        firstPlayer.transform.position = playerCartPositon.position;
 
-
+        /*
         if (playersMaterial[0] != null)
         {
             GameObject firstPlayer = Instantiate(getPlayer(playersMaterial[0].name), playerPostiona);
@@ -44,6 +47,7 @@ public class GameHandeler : MonoBehaviour
         {
             Instantiate(getPlayer(playersMaterial[1].name), playerPostiona);
         }
+        */
         
 
     }
