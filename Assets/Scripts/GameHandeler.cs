@@ -10,8 +10,11 @@ public class GameHandeler : MonoBehaviour
     Material[] playersMaterial = new Material[2];
 
     public Transform playerPostiona;
-    public Transform playerCartPositon;
-    public GameObject orgCart;
+    public Transform playerSceondPositon;
+    public Transform playerCartPositon1;
+    public Transform playerCartPositon2;
+    public GameObject orgCart1;
+    public GameObject orgCart2;
 
 
     public GameObject mario;
@@ -23,28 +26,46 @@ public class GameHandeler : MonoBehaviour
         public GameObject inkling;
         public GameObject shy_guy;
 
-   
+    public bool twoPlayers = false;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+       
+       
         playersMaterial = SceneManager.playerChoseMaterial;
 
-        //Destroy(orgCart);
-
-
-        if (playersMaterial[0] != null)
+        if (twoPlayers)
         {
             GameObject firstPlayer = Instantiate(getPlayer(playersMaterial[0].name), playerPostiona);
-            firstPlayer.transform.rotation = playerCartPositon.rotation;
-            firstPlayer.transform.position = playerCartPositon.position;
-            Destroy(orgCart);
+           
+            firstPlayer.transform.rotation = playerCartPositon1.rotation;
+            firstPlayer.transform.position = playerCartPositon1.position;
+            Destroy(orgCart1);
+
+
+           
+            GameObject secondPlayer = Instantiate(getPlayer(playersMaterial[1].name), playerSceondPositon);
+           
+            secondPlayer.transform.rotation = playerCartPositon2.rotation;
+            secondPlayer.transform.position = playerCartPositon2.position;
+            Destroy(orgCart2);
+            
+
         }
-        if (playersMaterial[1] != null)
+        else
         {
-            Instantiate(getPlayer(playersMaterial[1].name), playerPostiona);
+            if (playersMaterial[0] != null)
+            {
+                
+                GameObject firstPlayer = Instantiate(getPlayer(playersMaterial[0].name), playerPostiona);
+                firstPlayer.transform.rotation = playerCartPositon1.rotation;
+                firstPlayer.transform.position = playerCartPositon1.position;
+                Destroy(orgCart1);
+                
+            }
         }
-        
+
 
     }
 
