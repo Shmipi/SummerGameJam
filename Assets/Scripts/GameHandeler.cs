@@ -22,15 +22,15 @@ public class GameHandeler : MonoBehaviour
         public GameObject browser;
         public GameObject inkling;
         public GameObject shy_guy;
+    public Camera firtsPlayersCamera;
 
    
     // Start is called before the first frame update
     void Start()
     {
-        
+       
+       
         playersMaterial = SceneManager.playerChoseMaterial;
-
-        //Destroy(orgCart);
 
 
         if (playersMaterial[0] != null)
