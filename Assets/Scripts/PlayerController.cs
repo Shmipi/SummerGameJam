@@ -25,6 +25,8 @@ public class PlayerController : MonoBehaviour
 
     private bool touchingGround;
 
+    public bool secondPlayer = false;
+
     void Start(){
         rb = GetComponent<Rigidbody>();
     }
@@ -40,13 +42,37 @@ public class PlayerController : MonoBehaviour
     private void move(){
         realSpeed = transform.InverseTransformDirection(rb.velocity).z;
 
-        if(Input.GetKey(KeyCode.W)){
-            currentSpeed = Mathf.Lerp(currentSpeed, maxSpeed, Time.deltaTime *0.5f);
-        } else if(Input.GetKey(KeyCode.S)){
-            currentSpeed = Mathf.Lerp(currentSpeed, -maxSpeed / 1.75f, 1f * Time.deltaTime);
-        } else {
-            currentSpeed = Mathf.Lerp(currentSpeed, 0, Time.deltaTime * 1.5f);
+        if (!secondPlayer)
+        {
+            if (Input.GetKey(KeyCode.W))
+            {
+                currentSpeed = Mathf.Lerp(currentSpeed, maxSpeed, Time.deltaTime * 0.5f);
+            }
+            else if (Input.GetKey(KeyCode.S))
+            {
+                currentSpeed = Mathf.Lerp(currentSpeed, -maxSpeed / 1.75f, 1f * Time.deltaTime);
+            }
+            else
+            {
+                currentSpeed = Mathf.Lerp(currentSpeed, 0, Time.deltaTime * 1.5f);
+            }
         }
+        else
+        {
+            if (Input.GetKey(KeyCode.UpArrow))
+            {
+                currentSpeed = Mathf.Lerp(currentSpeed, maxSpeed, Time.deltaTime * 0.5f);
+            }
+            else if (Input.GetKey(KeyCode.DownArrow))
+            {
+                currentSpeed = Mathf.Lerp(currentSpeed, -maxSpeed / 1.75f, 1f * Time.deltaTime);
+            }
+            else
+            {
+                currentSpeed = Mathf.Lerp(currentSpeed, 0, Time.deltaTime * 1.5f);
+            }
+        }
+       
 
         Vector3 vel = transform.forward * currentSpeed;
         vel.y = rb.velocity.y;
@@ -95,39 +121,99 @@ public class PlayerController : MonoBehaviour
     }
 
     private void drift(){
-        if(Input.GetKeyDown(KeyCode.Space) && touchingGround){
-            //transform.GetChild(0).GetComponent<Animator>().SetTrigger("Hop");
-            if(steerDirection > 0){
-                driftRight = true;
+        if (secondPlayer!)
+        {
+            if (Input.GetKeyDown(KeyCode.Space) && touchingGround)
+            {
+                //transform.GetChild(0).GetComponent<Animator>().SetTrigger("Hop");
+                if (steerDirection > 0)
+                {
+                    driftRight = true;
+                    driftLeft = false;
+                    Debug.Log("Drifting Right");
+                }
+                else if (steerDirection < 0)
+                {
+                    driftRight = false;
+                    driftLeft = true;
+                    Debug.Log("Drifting Left");
+                }
+            }
+
+            if (Input.GetKeyDown(KeyCode.Space) && touchingGround && currentSpeed > 40 && Input.GetAxis("Horizontal") != 0)
+            {
+                driftTime += Time.deltaTime;
+
+                //spawn particles
+            }
+
+            if (!Input.GetKeyDown(KeyCode.Space) || currentSpeed < 40)
+            {
                 driftLeft = false;
-                Debug.Log("Drifting Right");
-            } else if (steerDirection < 0){
                 driftRight = false;
-                driftLeft = true;
-                Debug.Log("Drifting Left");
+                isSliding = false;
+
+                //give boost
+                if (driftTime > 1.5 && driftTime < 4)
+                {
+                    boostTime = 0.75f;
+                }
+                if (driftTime >= 4 && driftTime < 7)
+                {
+                    boostTime = 1.5f;
+                }
+                if (driftTime >= 7)
+                {
+                    boostTime = 2.5f;
+                }
             }
+
         }
-
-        if(Input.GetKeyDown(KeyCode.Space) && touchingGround && currentSpeed > 40 && Input.GetAxis("Horizontal") != 0){
-            driftTime += Time.deltaTime;
-
-            //spawn particles
-        }
-
-        if(!Input.GetKeyDown(KeyCode.Space) || currentSpeed < 40){
-            driftLeft = false;
-            driftRight = false;
-            isSliding = false;
-
-            //give boost
-            if(driftTime > 1.5 && driftTime < 4){
-                boostTime = 0.75f;
+        else
+        {
+            if (Input.GetKeyDown(KeyCode.RightControl) && touchingGround)
+            {
+                //transform.GetChild(0).GetComponent<Animator>().SetTrigger("Hop");
+                if (steerDirection > 0)
+                {
+                    driftRight = true;
+                    driftLeft = false;
+                    Debug.Log("Drifting Right");
+                }
+                else if (steerDirection < 0)
+                {
+                    driftRight = false;
+                    driftLeft = true;
+                    Debug.Log("Drifting Left");
+                }
             }
-            if(driftTime >= 4 && driftTime < 7){
-                boostTime = 1.5f;
+
+            if (Input.GetKeyDown(KeyCode.RightControl) && touchingGround && currentSpeed > 40 && Input.GetAxis("Horizontal") != 0)
+            {
+                driftTime += Time.deltaTime;
+
+                //spawn particles
             }
-            if(driftTime >= 7){
-                boostTime = 2.5f;
+
+            if (!Input.GetKeyDown(KeyCode.RightControl) || currentSpeed < 40)
+            {
+                driftLeft = false;
+                driftRight = false;
+                isSliding = false;
+
+                //give boost
+                if (driftTime > 1.5 && driftTime < 4)
+                {
+                    boostTime = 0.75f;
+                }
+                if (driftTime >= 4 && driftTime < 7)
+                {
+                    boostTime = 1.5f;
+                }
+                if (driftTime >= 7)
+                {
+                    boostTime = 2.5f;
+                }
             }
         }
     }
