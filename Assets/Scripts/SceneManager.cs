@@ -134,49 +134,54 @@ void Update()
             }
         }
     }
+    bool firstTimeHere = true;
     void moveOnToTheGame()
     {
         Material material = playerCharacter.GetComponent<MeshRenderer>().material;
         playerChoseMaterial[player] = material;
 
         if (aiGame == false){
-            playerTextUGUI.text = "Player 2";
-            playerCharacter.GetComponent<MeshRenderer>().material = standardMaterial;
-            player = 1;
-            aiGame = true;
-            StartCoroutine(fadeCharacterScreen(false));
-            string chosenCharacter = material.name;
-            switch (chosenCharacter)
+            if (firstTimeHere)
             {
-                case "Mario (Instance)":
-                    Debug.Log("Mario var vald");
-                    marioButton.enabled = false;
-                    break;
-                case "Luigi (Instance)":
-                    Debug.Log("Luigi var vald");
-                    luigiButton.enabled = false;
-                    break;
-                case "Shy_guy (Instance)":
-                    Shy_guyButton.enabled = false;
-                    break;
-                case "Inkling_Girl (Instance)":
-                    Inkling_girlButton.enabled = false;
-                    break;
-                case "Wario (Instance)":
-                    WarioButton.enabled = false;
-                    break;
-                case "Waluigi (Instance)":
-                    WaluigiButton.enabled = false;
-                    break;
-                case "Broser (Instance)":
-                    BroserButton.enabled = false;
-                    break;
-                case "Toad (Instance)":
-                    ToadButton.enabled = false;
-                    break;
+                playerTextUGUI.text = "Player 2";
+                playerCharacter.GetComponent<MeshRenderer>().material = standardMaterial;
+                player = 1;
+                firstTimeHere = false;
+                StartCoroutine(fadeCharacterScreen(false));
+                string chosenCharacter = material.name;
+                switch (chosenCharacter)
+                {
+                    case "Mario (Instance)":
+                        Debug.Log("Mario var vald");
+                        marioButton.enabled = false;
+                        break;
+                    case "Luigi (Instance)":
+                        Debug.Log("Luigi var vald");
+                        luigiButton.enabled = false;
+                        break;
+                    case "Shy_guy (Instance)":
+                        Shy_guyButton.enabled = false;
+                        break;
+                    case "Inkling_Girl (Instance)":
+                        Inkling_girlButton.enabled = false;
+                        break;
+                    case "Wario (Instance)":
+                        WarioButton.enabled = false;
+                        break;
+                    case "Waluigi (Instance)":
+                        WaluigiButton.enabled = false;
+                        break;
+                    case "Broser (Instance)":
+                        BroserButton.enabled = false;
+                        break;
+                    case "Toad (Instance)":
+                        ToadButton.enabled = false;
+                        break;
 
+                }
+                return;
             }
-            return;
+           
         }
         StartCoroutine(fadetoLevelScene());
               
@@ -184,7 +189,12 @@ void Update()
 
     void levelNavigator(int level)
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene(level);
+        if (aiGame) { UnityEngine.SceneManagement.SceneManager.LoadScene(level); }
+        else
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene(2);
+        }
+        
     }
 
 
@@ -216,6 +226,7 @@ void Update()
         yield return new WaitForSeconds(1);
         blackScreen.SetActive(false);
         levelScreen.SetActive(true);
+        Debug.Log("ai är " + aiGame);
         yield break;
 
     }
