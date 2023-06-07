@@ -7,12 +7,12 @@ public class FinishLine : MonoBehaviour
 {
 
     public int lastCheckPoint;
-    public TextMeshProUGUI lappText;
+   
 
     private void Start() {
         CheckPointHandler handler = this.GetComponentInParent<CheckPointHandler>();
         lastCheckPoint = handler.getCheckPointAmount() -1;
-
+        
     }
 
     private void OnTriggerEnter(Collider collider) {

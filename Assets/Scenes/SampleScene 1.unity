@@ -433,7 +433,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lastCheckPoint: 0
-  lappText: {fileID: 0}
 --- !u!1001 &582762464
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -902,9 +901,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerPostiona: {fileID: 721525939}
   playerSceondPositon: {fileID: 0}
-  playerCartPositon1: {fileID: 0}
+  playerCartPositon1: {fileID: 1637572640}
   playerCartPositon2: {fileID: 0}
-  orgCart1: {fileID: 0}
+  orgCart1: {fileID: 1637572639}
   orgCart2: {fileID: 0}
   mario: {fileID: 4826810022871172224, guid: b9eb896db24854e44848ac5db4cf5eba, type: 3}
   luigi: {fileID: 4826810022871172224, guid: 62196d418c0222341a01beea0fa976cd, type: 3}
@@ -1254,6 +1253,16 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: -20.274, y: 0, z: 0}
+--- !u!1 &1637572639 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8263878875854447042, guid: 6a94c951104fb6e42b84154b2b61402d, type: 3}
+  m_PrefabInstance: {fileID: 875256370}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1637572640 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8783394355010927480, guid: 6a94c951104fb6e42b84154b2b61402d, type: 3}
+  m_PrefabInstance: {fileID: 875256370}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1656353922
 GameObject:
   m_ObjectHideFlags: 0

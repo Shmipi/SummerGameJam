@@ -50,14 +50,12 @@ public class GameHandeler : MonoBehaviour
             secondPlayer.transform.rotation = playerCartPositon2.rotation;
             secondPlayer.transform.position = playerCartPositon2.position;
             Destroy(orgCart2);
-            
-
+          
         }
         else
         {
             if (playersMaterial[0] != null)
-            {
-                
+            {                
                 GameObject firstPlayer = Instantiate(getPlayer(playersMaterial[0].name), playerPostiona);
                 firstPlayer.transform.rotation = playerCartPositon1.rotation;
                 firstPlayer.transform.position = playerCartPositon1.position;
@@ -72,7 +70,10 @@ public class GameHandeler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(Input.GetKey(KeyCode.Escape))
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+        }
     }
 
     GameObject getPlayer(string materialName)

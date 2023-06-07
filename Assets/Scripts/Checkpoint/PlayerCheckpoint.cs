@@ -36,6 +36,7 @@ public class PlayerCheckpoint : MonoBehaviour
 
         if (playerController.secondPlayer == false)
         {
+            winnigText.text = winnigText.text + " Player 1";
             GameObject pc = GameObject.Find("PlayerCanvas");
             TextMeshProUGUI wi = Instantiate(winnigText, pc.transform);
             wi.gameObject.SetActive(true);
@@ -43,6 +44,7 @@ public class PlayerCheckpoint : MonoBehaviour
         }
         else
         {
+            winnigText.text = winnigText.text + " Player 2";
             GameObject pc = GameObject.Find("PlayerCanvas Variant");
             TextMeshProUGUI wi = Instantiate(winnigText, pc.transform);
             wi.gameObject.SetActive(true);
