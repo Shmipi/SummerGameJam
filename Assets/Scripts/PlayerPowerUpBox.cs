@@ -71,6 +71,7 @@ public class PlayerPowerUpBox : MonoBehaviour
     private void usePower() {
         if (powerNum == 1) {
             Debug.Log("SHRROOOOM!");
+
         }
 
         else if (powerNum == 2) {
