@@ -24,6 +24,8 @@ public class CheckPointHandler : MonoBehaviour
 
         checkPoints.Remove(checkPoints[0]);
         getCheckPointAmount();
+
+
     }
 
     public int getCheckPointAmount() {
