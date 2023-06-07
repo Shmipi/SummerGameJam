@@ -11,6 +11,7 @@ public class GameHandeler : MonoBehaviour
 
     public Transform playerPostiona;
     public Transform playerCartPositon;
+    public GameObject orgCart;
 
 
     public GameObject mario;
@@ -32,6 +33,7 @@ public class GameHandeler : MonoBehaviour
         GameObject firstPlayer = Instantiate(getPlayer("Wario (Instance)"), playerPostiona);
         firstPlayer.transform.rotation = playerCartPositon.rotation;
         firstPlayer.transform.position = playerCartPositon.position;
+        //Destroy(orgCart);
 
         /*
         if (playersMaterial[0] != null)
