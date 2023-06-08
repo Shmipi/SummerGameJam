@@ -13,6 +13,9 @@ public class SceneManager : MonoBehaviour
 {
     public Button startGame;
     public Button exitGame;
+    public Button controllsButton;
+    public Button backFromControlls;
+
     public AudioClip startMusik;
 
     public Button aIButton;
@@ -23,6 +26,7 @@ public class SceneManager : MonoBehaviour
     public GameObject charackterScreen;
     public GameObject blackScreen;
     public GameObject levelScreen;
+    public GameObject controllsScreen;
 
     public GameObject playerCharacter;
     public Material[] charactersMaterial;
@@ -64,12 +68,15 @@ public class SceneManager : MonoBehaviour
 
         startGame.onClick.AddListener(delegate { startTheGame(); });
         exitGame.onClick.AddListener(delegate { endGame(); });
+        controllsButton.onClick.AddListener(delegate { goToControlls(); });
+        backFromControlls.onClick.AddListener(delegate { goBackFromControlls(); });
 
         startScreen.SetActive(true);
         playerScreen.SetActive(false);
         charackterScreen.SetActive(false);
         blackScreen.SetActive(false);
         levelScreen.SetActive(false);
+        controllsScreen.SetActive(false);
 
         aIButton.onClick.AddListener(delegate { aiOrNot(true); });
         multiPlayerButton.onClick.AddListener(delegate { aiOrNot(false); });
@@ -99,7 +106,10 @@ public class SceneManager : MonoBehaviour
 // Update is called once per frame
 void Update()
     {
-        
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+        }
     }
 
     void startTheGame()
@@ -230,6 +240,18 @@ void Update()
         Debug.Log("ai är " + aiGame);
         yield break;
 
+    }
+
+    void goToControlls()
+    {
+        startScreen.SetActive(false);
+        controllsScreen.SetActive(true);
+    }
+
+    void goBackFromControlls()
+    {
+        startScreen.SetActive(true);
+        controllsScreen.SetActive(false);
     }
 
 }

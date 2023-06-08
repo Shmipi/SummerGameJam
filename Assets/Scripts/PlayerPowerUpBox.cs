@@ -104,11 +104,6 @@ public class PlayerPowerUpBox : MonoBehaviour
 
         if (playerController.secondPlayer == false)
         {
-            /*
-            UnityEngine.Object pPrefab = Resources.Load("Assets/Prefabs/GreenShell");
-            GameObject pNewObject = (GameObject)GameObject.Instantiate(pPrefab, gameHandeler.playerSceondPositon);
-            pNewObject.transform.position = gameHandeler.playerCartPositon2.position;
-            */
             sh = Instantiate(gs, gameHandeler.playerPostiona);
             Vector3 v3 = gameHandeler.playerCartPositon1.position;
            
@@ -126,14 +121,6 @@ public class PlayerPowerUpBox : MonoBehaviour
             sh.transform.position = v3;
            
         }
-        /*
-        Debug.Log(" första " + sh.transform.rotation);
-        float yAxies = Random.Range(50f, 180f);
-        //yAxies = yAxies * 10;
-        sh.transform.rotation = Quaternion.Euler(new Vector3(0, yAxies, 0));
-        Debug.Log("rotation" + sh.transform.rotation);
-        Debug.Log(" rotarin of y " + sh.transform.rotation.y);
-        */
 
         rbShell = sh.GetComponent<Rigidbody>();
 

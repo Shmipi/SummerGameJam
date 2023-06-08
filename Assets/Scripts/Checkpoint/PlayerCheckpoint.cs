@@ -60,6 +60,8 @@ public class PlayerCheckpoint : MonoBehaviour
             TextMeshProUGUI wi = Instantiate(winnigText, pc.transform);
             wi.gameObject.SetActive(true);
 
+
+
         }
         else
         {
