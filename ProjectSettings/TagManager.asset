@@ -6,6 +6,7 @@ TagManager:
   tags:
   - PickUpBox
   - Cart
+  - Wall
   layers:
   - Default
   - TransparentFX
