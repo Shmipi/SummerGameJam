@@ -26,7 +26,9 @@ public class GameHandeler : MonoBehaviour
         public GameObject inkling;
         public GameObject shy_guy;
 
+
     public bool twoPlayers = false;
+    public GameObject greenSheel;
 
     // Start is called before the first frame update
     void Start()
@@ -34,6 +36,7 @@ public class GameHandeler : MonoBehaviour
        
        
         playersMaterial = SceneManager.playerChoseMaterial;
+        twoPlayers = playersMaterial[0] != null && playersMaterial[1] != null;
 
         if (twoPlayers)
         {
