@@ -11,7 +11,7 @@ public class CheckPointHandler : MonoBehaviour
 
     private void Awake() {
         // checkPointGameObjects = GameObject.Find("CheckpointList");
-        Transform[] ts = this.GetComponentsInChildren<Transform>();
+        Transform[] ts = gameObject.GetComponentsInChildren<Transform>();
         if (ts == null) {
             Debug.LogError("No checkpoints found");
         }
