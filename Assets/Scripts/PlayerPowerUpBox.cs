@@ -81,5 +81,10 @@ public class PlayerPowerUpBox : MonoBehaviour
         powerImage.setPowerImage(powerNum);
     }
 
+    private void speedShroom() {
+        PlayerController player = gameObject.GetComponentInParent<PlayerController>();
+        player.maxSpeed = 80;
+    }
+
 
 }
