@@ -75,7 +75,7 @@ public class PlayerPowerUpBox : MonoBehaviour
             Debug.Log("SHRROOOOM! + shell");
             //speedShroom();
             useSheel();
-
+            speedShroom();
         }
 
         else if (powerNum == 2) {
@@ -89,7 +89,7 @@ public class PlayerPowerUpBox : MonoBehaviour
 
     private void speedShroom() {
         //PlayerController player = gameObject.GetComponentInParent<PlayerController>();
-        playerController.maxSpeed = 80;
+        playerController.currentSpeed += 80;
     }
 
     void useSheel()
