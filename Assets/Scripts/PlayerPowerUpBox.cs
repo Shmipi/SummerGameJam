@@ -16,6 +16,7 @@ public class PlayerPowerUpBox : MonoBehaviour
     int speed = 20;
     public Vector3 shellMoveMent = new Vector3(-17, 0, 15);
     public bool aktivShell = false;
+    GameObject sh;
 
     // Start is called before the first frame update
     void Start()
@@ -101,7 +102,6 @@ public class PlayerPowerUpBox : MonoBehaviour
     {
         aktivShell = true;
         GameObject gs = gameHandeler.greenSheel;
-        GameObject sh;
 
         if (playerController.secondPlayer == false)
         {
@@ -146,6 +146,21 @@ public class PlayerPowerUpBox : MonoBehaviour
         {
             rbShell.velocity = shellMoveMent;
         }
+    }
+
+    public IEnumerator playerStopp()
+    {
+        sh.GetComponent<Renderer>().enabled = false;
+        GameObject pa = gameObject.transform.parent.gameObject;
+        PlayerController pc = pa.GetComponent<PlayerController>();
+        pc.playerstopp = true;
+
+        yield return new WaitForSeconds(2);
+
+        Destroy(sh);
+        pc.playerstopp = false;
+        yield break;
+
     }
 
 

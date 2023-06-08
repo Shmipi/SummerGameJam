@@ -13,6 +13,7 @@ public class PlayerCheckpoint : MonoBehaviour
     PlayerController playerController;
     public TextMeshProUGUI winnigText;
     public TextMeshProUGUI lappText;
+    GameHandeler gameHandeler;
 
     private void Start()
     {
@@ -21,10 +22,16 @@ public class PlayerCheckpoint : MonoBehaviour
     }
 
 
+    bool textup = false;
     private void Update() {
 
         if (currentLap >= maxLap) {
-            winCondition();
+            if(textup == false)
+            {
+                winCondition();
+                textup = true;
+            }
+            
         }
         lappText.text = "Lap: " + currentLap + " / " + maxLap;
 
@@ -36,7 +43,19 @@ public class PlayerCheckpoint : MonoBehaviour
 
         if (playerController.secondPlayer == false)
         {
-            winnigText.text = winnigText.text + " Player 1";
+            GameObject gh = GameObject.Find("GameHandeler");
+            gameHandeler = gh.GetComponent<GameHandeler>();
+
+            if(gameHandeler.twoPlayers == true)
+            {
+                winnigText.text = "Player 1 Wins";
+            }
+            else
+            {
+                winnigText.text = "Player Wins";
+
+            }
+
             GameObject pc = GameObject.Find("PlayerCanvas");
             TextMeshProUGUI wi = Instantiate(winnigText, pc.transform);
             wi.gameObject.SetActive(true);
@@ -44,7 +63,7 @@ public class PlayerCheckpoint : MonoBehaviour
         }
         else
         {
-            winnigText.text = winnigText.text + " Player 2";
+            winnigText.text = "Player 2 Wins";
             GameObject pc = GameObject.Find("PlayerCanvas Variant");
             TextMeshProUGUI wi = Instantiate(winnigText, pc.transform);
             wi.gameObject.SetActive(true);

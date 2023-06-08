@@ -27,16 +27,23 @@ public class PlayerController : MonoBehaviour
 
     public bool secondPlayer = false;
 
+    public bool playerstopp = false;
+
     void Start(){
         rb = GetComponent<Rigidbody>();
     }
 
     void FixedUpdate(){
-        move();
-        steer();
-        groundNormalRotation();
-        drift();
-        boosts();
+
+        if(playerstopp == false)
+        {
+            move();
+            steer();
+            groundNormalRotation();
+            drift();
+            boosts();
+        }
+       
     }
     
     private void move(){

@@ -181,7 +181,6 @@ void Update()
                 }
                 return;
             }
-           
         }
         StartCoroutine(fadetoLevelScene());
               
@@ -189,10 +188,12 @@ void Update()
 
     void levelNavigator(int level)
     {
-        if (aiGame) { UnityEngine.SceneManagement.SceneManager.LoadScene(level); }
+        if (aiGame == false) {
+
+            UnityEngine.SceneManagement.SceneManager.LoadScene("Level" + level + "_2P"); }
         else
         {
-            UnityEngine.SceneManagement.SceneManager.LoadScene(2);
+            UnityEngine.SceneManagement.SceneManager.LoadScene("Level" + level + "_1P");
         }
         
     }
@@ -223,7 +224,7 @@ void Update()
     {
         charackterScreen.SetActive(false);
         blackScreen.SetActive(true);
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.5f);
         blackScreen.SetActive(false);
         levelScreen.SetActive(true);
         Debug.Log("ai är " + aiGame);
