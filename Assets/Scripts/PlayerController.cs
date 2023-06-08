@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody rb;
     
     //movement
-    private float currentSpeed;
+    public float currentSpeed;
     public float maxSpeed;
     public float boostSpeed;
     private float realSpeed;
