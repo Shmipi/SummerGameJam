@@ -6,7 +6,7 @@ using UnityEngine;
 public class FinishLine : MonoBehaviour
 {
 
-    public int lastCheckPoint;
+    int lastCheckPoint;
    
 
     private void Start() {
