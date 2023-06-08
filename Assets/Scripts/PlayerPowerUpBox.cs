@@ -11,11 +11,14 @@ public class PlayerPowerUpBox : MonoBehaviour
 
     private int powerNum = 0;
     PlayerController playerController;
+    GameHandeler gameHandeler;
 
     // Start is called before the first frame update
     void Start()
     {
         playerController = GetComponentInParent<PlayerController>();
+        GameObject gh = GameObject.Find("GameHandeler");
+        gameHandeler = gh.GetComponent<GameHandeler>();
         if (playerController.secondPlayer == false)
         {
             GameObject pc = GameObject.Find("PlayerCanvas");
@@ -69,12 +72,15 @@ public class PlayerPowerUpBox : MonoBehaviour
 
     private void usePower() {
         if (powerNum == 1) {
-            Debug.Log("SHRROOOOM!");
+            Debug.Log("SHRROOOOM! + shell");
+            //speedShroom();
+            useSheel();
 
         }
 
         else if (powerNum == 2) {
             Debug.Log("Shell.");
+            useSheel();
         }
 
         powerNum = 0;
@@ -82,9 +88,41 @@ public class PlayerPowerUpBox : MonoBehaviour
     }
 
     private void speedShroom() {
-        PlayerController player = gameObject.GetComponentInParent<PlayerController>();
-        player.maxSpeed = 80;
+        //PlayerController player = gameObject.GetComponentInParent<PlayerController>();
+        playerController.maxSpeed = 80;
     }
+
+    void useSheel()
+    {
+
+        GameObject gs = gameHandeler.greenSheel;
+        GameObject sh;
+
+        if (playerController.secondPlayer == false)
+        {
+            /*
+            UnityEngine.Object pPrefab = Resources.Load("Assets/Prefabs/GreenShell");
+            GameObject pNewObject = (GameObject)GameObject.Instantiate(pPrefab, gameHandeler.playerSceondPositon);
+            pNewObject.transform.position = gameHandeler.playerCartPositon2.position;
+            */
+            sh = Instantiate(gs, gameHandeler.playerPostiona);
+            Vector3 v3 = gameHandeler.playerCartPositon1.position;
+            v3.x = v3.x - 0.5f;
+            v3.y = v3.y + 0.5f;
+            sh.transform.position = v3;
+
+        }
+        else
+        {
+            sh = Instantiate(gs, gameHandeler.playerSceondPositon);
+            Vector3 v3 = gameHandeler.playerCartPositon2.position;
+            v3.x = v3.x - 0.5f;
+            v3.y = v3.y + 0.5f;
+            sh.transform.position = v3;
+        }
+
+    }
+
 
 
 }
