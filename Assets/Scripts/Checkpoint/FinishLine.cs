@@ -18,12 +18,12 @@ public class FinishLine : MonoBehaviour
     private void OnTriggerEnter(Collider collider) {
         
         if (collider.CompareTag("Player")) {
-            Debug.Log("colided med player");
+            // Debug.Log("colided med player");
             PlayerCheckpoint player = collider.GetComponent<PlayerCheckpoint>();
-            if (player.currentCheckPoint >= lastCheckPoint) {
+            if (player.currentCheckPoint == lastCheckPoint) {
                 player.currentCheckPoint = 0;
                 player.currentLap += 1;
-                Debug.Log("lapp har g�tt up");
+                // Debug.Log("lapp har g�tt up");
             }
         }
     }
