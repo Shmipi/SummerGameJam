@@ -12,6 +12,10 @@ public class PlayerPowerUpBox : MonoBehaviour
     private int powerNum = 0;
     PlayerController playerController;
     GameHandeler gameHandeler;
+    Rigidbody rbShell;
+    int speed = 20;
+    public Vector3 shellMoveMent = new Vector3(-17, 0, 20);
+    public bool aktivShell = false;
 
     // Start is called before the first frame update
     void Start()
@@ -92,9 +96,10 @@ public class PlayerPowerUpBox : MonoBehaviour
         playerController.maxSpeed = 80;
     }
 
+   
     void useSheel()
     {
-
+        aktivShell = true;
         GameObject gs = gameHandeler.greenSheel;
         GameObject sh;
 
@@ -107,10 +112,11 @@ public class PlayerPowerUpBox : MonoBehaviour
             */
             sh = Instantiate(gs, gameHandeler.playerPostiona);
             Vector3 v3 = gameHandeler.playerCartPositon1.position;
+           
             v3.x = v3.x - 0.5f;
             v3.y = v3.y + 0.5f;
             sh.transform.position = v3;
-
+           
         }
         else
         {
@@ -119,8 +125,27 @@ public class PlayerPowerUpBox : MonoBehaviour
             v3.x = v3.x - 0.5f;
             v3.y = v3.y + 0.5f;
             sh.transform.position = v3;
+           
         }
+        /*
+        Debug.Log(" första " + sh.transform.rotation);
+        float yAxies = Random.Range(50f, 180f);
+        //yAxies = yAxies * 10;
+        sh.transform.rotation = Quaternion.Euler(new Vector3(0, yAxies, 0));
+        Debug.Log("rotation" + sh.transform.rotation);
+        Debug.Log(" rotarin of y " + sh.transform.rotation.y);
+        */
 
+        rbShell = sh.GetComponent<Rigidbody>();
+
+    }
+
+    private void FixedUpdate()
+    {
+        if (aktivShell)
+        {
+            rbShell.velocity = shellMoveMent;
+        }
     }
 
 
