@@ -44,7 +44,7 @@ public class GameHandeler : MonoBehaviour
            
             firstPlayer.transform.rotation = playerCartPositon1.rotation;
             firstPlayer.transform.position = playerCartPositon1.position;
-            Destroy(orgCart1);
+            //Destroy(orgCart1);
 
 
            
@@ -52,7 +52,7 @@ public class GameHandeler : MonoBehaviour
            
             secondPlayer.transform.rotation = playerCartPositon2.rotation;
             secondPlayer.transform.position = playerCartPositon2.position;
-            Destroy(orgCart2);
+            //Destroy(orgCart2);
           
         }
         else
@@ -62,7 +62,7 @@ public class GameHandeler : MonoBehaviour
                 GameObject firstPlayer = Instantiate(getPlayer(playersMaterial[0].name), playerPostiona);
                 firstPlayer.transform.rotation = playerCartPositon1.rotation;
                 firstPlayer.transform.position = playerCartPositon1.position;
-                Destroy(orgCart1);
+                //Destroy(orgCart1);
                 
             }
         }

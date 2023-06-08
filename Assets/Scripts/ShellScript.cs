@@ -10,6 +10,8 @@ public class ShellScript : MonoBehaviour
     PlayerPowerUpBox pw;
     GameObject pa;
     bool hitPlayerForTheFirstTime = true;
+    int hitcounter = 0;
+
 
     // Start is called before the first frame update
     void Start()
@@ -53,26 +55,16 @@ public class ShellScript : MonoBehaviour
         }
         if (collision.transform.CompareTag("Player"))
         {
-            /*
-            if (hitPlayerForTheFirstTime)
+            hitcounter++;
+            if(hitcounter == 3)
             {
-                hitPlayerForTheFirstTime = false;
+                Debug.Log("Hitt 3");
+                pw.aktivShell = false;
+                StartCoroutine(pw.playerStopp());
             }
-            {
-                
-                          pw.aktivShell = false;
-                          Destroy(gameObject);
-                          StartCoroutine(playerStopp());
-                          
-            }
-            */
-
-            pw.aktivShell = false;
-            Destroy(gameObject);
-            StartCoroutine(playerStopp());
-
+           
         }
-        Debug.Log(collision.transform.tag);
+        
         //Debug.Log("Col");
     }
     /*
@@ -92,15 +84,5 @@ public class ShellScript : MonoBehaviour
        
     }
 */
-    IEnumerator playerStopp()
-    {
-        Debug.Log("är i courentinr");
-        PlayerController pc = pa.GetComponent<PlayerController>();
-        float ogMax = pc.maxSpeed;
-        pc.maxSpeed = 0;
-        yield return new WaitForSeconds(2);
-        pc.maxSpeed = ogMax;
-        yield break;
-
-    }
+   
 }
