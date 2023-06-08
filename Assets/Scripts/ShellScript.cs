@@ -4,14 +4,12 @@ using UnityEngine;
 
 public class ShellScript : MonoBehaviour
 {
-
-   
- 
     Collider colliderShell;
     int wallCounter = 0;
 
     PlayerPowerUpBox pw;
     GameObject pa;
+    bool hitPlayerForTheFirstTime = true;
 
     // Start is called before the first frame update
     void Start()
@@ -35,15 +33,15 @@ public class ShellScript : MonoBehaviour
         {
             wallCounter++;
             if(wallCounter == 1) {
-                pw.shellMoveMent = new Vector3(17, 0, 20);
+                pw.shellMoveMent = new Vector3(17, 0, 15);
             }
             if(wallCounter == 2)
             {
-                pw.shellMoveMent = new Vector3(-17, 0, 20);
+                pw.shellMoveMent = new Vector3(-17, 0, 15);
             }
             if (wallCounter == 3)
             {
-                pw.shellMoveMent = new Vector3(17, 0, 20);
+                pw.shellMoveMent = new Vector3(17, 0, 15);
             }
             if (wallCounter == 4)
             {
@@ -56,10 +54,22 @@ public class ShellScript : MonoBehaviour
         if (collision.transform.CompareTag("Player"))
         {
             /*
+            if (hitPlayerForTheFirstTime)
+            {
+                hitPlayerForTheFirstTime = false;
+            }
+            {
+                
+                          pw.aktivShell = false;
+                          Destroy(gameObject);
+                          StartCoroutine(playerStopp());
+                          
+            }
+            */
+
             pw.aktivShell = false;
             Destroy(gameObject);
             StartCoroutine(playerStopp());
-            */
 
         }
         Debug.Log(collision.transform.tag);

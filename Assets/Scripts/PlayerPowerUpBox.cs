@@ -14,7 +14,7 @@ public class PlayerPowerUpBox : MonoBehaviour
     GameHandeler gameHandeler;
     Rigidbody rbShell;
     int speed = 20;
-    public Vector3 shellMoveMent = new Vector3(-17, 0, 20);
+    public Vector3 shellMoveMent = new Vector3(-17, 0, 15);
     public bool aktivShell = false;
 
     // Start is called before the first frame update
