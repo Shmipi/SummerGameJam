@@ -70,7 +70,7 @@ public class PlayerPowerUpBox : MonoBehaviour
     private void usePower() {
         if (powerNum == 1) {
             Debug.Log("SHRROOOOM!");
-
+            speedShroom();
         }
 
         else if (powerNum == 2) {
@@ -83,7 +83,8 @@ public class PlayerPowerUpBox : MonoBehaviour
 
     private void speedShroom() {
         PlayerController player = gameObject.GetComponentInParent<PlayerController>();
-        player.maxSpeed = 80;
+        // player.boostSpeed = 200;
+        player.currentSpeed += 80;
     }
 
 
