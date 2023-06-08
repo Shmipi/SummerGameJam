@@ -8005,6 +8005,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 937142299}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &939903154 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7527561784440134982, guid: 3454a1a7cc67f04418a87b16dc389c43, type: 3}
+  m_PrefabInstance: {fileID: 52961465}
+  m_PrefabAsset: {fileID: 0}
+--- !u!81 &939903156
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 939903154}
+  m_Enabled: 1
 --- !u!1 &948051674
 GameObject:
   m_ObjectHideFlags: 0
@@ -12420,7 +12433,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4924dbc81a9c944799813bd0fde0207, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lastCheckPoint: 0
 --- !u!65 &1562235333
 BoxCollider:
   m_ObjectHideFlags: 0
