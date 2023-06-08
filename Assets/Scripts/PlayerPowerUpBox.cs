@@ -77,9 +77,8 @@ public class PlayerPowerUpBox : MonoBehaviour
 
     private void usePower() {
         if (powerNum == 1) {
-            Debug.Log("SHRROOOOM! + shell");
+            Debug.Log("SHRROOOOM!");
             //speedShroom();
-            useSheel();
             speedShroom();
         }
 
