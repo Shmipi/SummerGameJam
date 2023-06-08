@@ -6,7 +6,7 @@ using UnityEngine;
 public class FinishLine : MonoBehaviour
 {
 
-    int lastCheckPoint;
+    public int lastCheckPoint;
    
 
     private void Start() {
@@ -23,7 +23,7 @@ public class FinishLine : MonoBehaviour
             if (player.currentCheckPoint >= lastCheckPoint) {
                 player.currentCheckPoint = 0;
                 player.currentLap += 1;
-                Debug.Log("lapp har gått up");
+                Debug.Log("lapp har gï¿½tt up");
             }
         }
     }
