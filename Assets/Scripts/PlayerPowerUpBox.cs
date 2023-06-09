@@ -14,7 +14,7 @@ public class PlayerPowerUpBox : MonoBehaviour
     GameHandeler gameHandeler;
     Rigidbody rbShell;
     int speed = 20;
-    public Vector3 shellMoveMent = new Vector3(-17, 0, 15);
+    public Vector3 shellMoveMent = new Vector3(-17, 0, 40);
     public bool aktivShell = false;
     GameObject sh;
 

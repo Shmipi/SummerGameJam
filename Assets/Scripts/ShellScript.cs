@@ -35,15 +35,15 @@ public class ShellScript : MonoBehaviour
         {
             wallCounter++;
             if(wallCounter == 1) {
-                pw.shellMoveMent = new Vector3(17, 0, 15);
+                pw.shellMoveMent = new Vector3(17, 0, 40);
             }
             if(wallCounter == 2)
             {
-                pw.shellMoveMent = new Vector3(-17, 0, 15);
+                pw.shellMoveMent = new Vector3(-17, 0, 40);
             }
             if (wallCounter == 3)
             {
-                pw.shellMoveMent = new Vector3(17, 0, 15);
+                pw.shellMoveMent = new Vector3(17, 0, 40);
             }
             if (wallCounter == 4)
             {
