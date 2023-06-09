@@ -44,7 +44,10 @@ public class GameHandeler : MonoBehaviour
            
             firstPlayer.transform.rotation = playerCartPositon1.rotation;
             firstPlayer.transform.position = playerCartPositon1.position;
+orgCart1.GetComponent<Renderer>().enabled = false;
+
             //Destroy(orgCart1);
+
 
 
            
@@ -52,6 +55,7 @@ public class GameHandeler : MonoBehaviour
            
             secondPlayer.transform.rotation = playerCartPositon2.rotation;
             secondPlayer.transform.position = playerCartPositon2.position;
+orgCart2.GetComponent<Renderer>().enabled = false;
             //Destroy(orgCart2);
           
         }
@@ -63,6 +67,7 @@ public class GameHandeler : MonoBehaviour
                 firstPlayer.transform.rotation = playerCartPositon1.rotation;
                 firstPlayer.transform.position = playerCartPositon1.position;
                 //Destroy(orgCart1);
+orgCart1.GetComponent<Renderer>().enabled = false;
                 
             }
         }
