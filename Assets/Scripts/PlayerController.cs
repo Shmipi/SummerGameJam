@@ -92,64 +92,55 @@ public class PlayerController : MonoBehaviour
 
         float steerAmount;
 
+if(secondPlayer == true){
+{
+
+
         if(driftLeft && !driftRight){
-            steerDirection = Input.GetAxis("Horizontal") < 0 ? -1.5f : -0.5f;
+            steerDirection = Input.GetKey(KeyCode.UpArrow) < 0 ? -1.5f : -0.5f;
+            transform.GetChild(0).localRotation = Quaternion.Lerp(transform.GetChild(0).localRotation, Quaternion.Euler(0, -20f, 0), 8f * Time.deltaTime);
 
-            if(secondPlayer && Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow))
-            {
-                transform.GetChild(0).localRotation = Quaternion.Lerp(transform.GetChild(0).localRotation, Quaternion.Euler(0, -20f, 0), 8f * Time.deltaTime);
-
-            }
-            if(secondPlayer == false ||  Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
-            {
-                transform.GetChild(0).localRotation = Quaternion.Lerp(transform.GetChild(0).localRotation, Quaternion.Euler(0, -20f, 0), 8f * Time.deltaTime);
-            }
-
-         
             if(isSliding && touchingGround){
                 rb.AddForce(transform.right * outwardsDriftForce * Time.deltaTime, ForceMode.Acceleration);
             }
         } else if(driftRight && !driftLeft){
             steerDirection = Input.GetAxis("Horizontal") > 0 ? 1.5f : 0.5f;
-
-            if (secondPlayer && Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow))
-            {
-                transform.GetChild(0).localRotation = Quaternion.Lerp(transform.GetChild(0).localRotation, Quaternion.Euler(0, 20f, 0), 8f * Time.deltaTime);
-
-            }
-            if (secondPlayer == false && Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
-            {
-                transform.GetChild(0).localRotation = Quaternion.Lerp(transform.GetChild(0).localRotation, Quaternion.Euler(0, 20f, 0), 8f * Time.deltaTime);
-            }
+            transform.GetChild(0).localRotation = Quaternion.Lerp(transform.GetChild(0).localRotation, Quaternion.Euler(0, 20f, 0), 8f * Time.deltaTime);
 
             if(isSliding && touchingGround){
-
                 rb.AddForce(transform.right * -outwardsDriftForce * Time.deltaTime, ForceMode.Acceleration);
             }
         } else {
+            transform.GetChild(0).localRotation = Quaternion.Lerp(transform.GetChild(0).localRotation, Quaternion.Euler(0, 0f, 0), 8f * Time.deltaTime);
+        }
+}else{
 
-            if (secondPlayer && Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow))
-            {
-                transform.GetChild(0).localRotation = Quaternion.Lerp(transform.GetChild(0).localRotation, Quaternion.Euler(0, 0f, 0), 8f * Time.deltaTime);
 
+        if(driftLeft && !driftRight){
+            steerDirection = Input.GetAxis("Horizontal") < 0 ? -1.5f : -0.5f;
+            transform.GetChild(0).localRotation = Quaternion.Lerp(transform.GetChild(0).localRotation, Quaternion.Euler(0, -20f, 0), 8f * Time.deltaTime);
+
+            if(isSliding && touchingGround){
+                rb.AddForce(transform.right * outwardsDriftForce * Time.deltaTime, ForceMode.Acceleration);
             }
-            if (secondPlayer == false || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
-            {
-                transform.GetChild(0).localRotation = Quaternion.Lerp(transform.GetChild(0).localRotation, Quaternion.Euler(0, 0f, 0), 8f * Time.deltaTime);
-            }
+        } else if(driftRight && !driftLeft){
+            steerDirection = Input.GetAxis("Horizontal") > 0 ? 1.5f : 0.5f;
+            transform.GetChild(0).localRotation = Quaternion.Lerp(transform.GetChild(0).localRotation, Quaternion.Euler(0, 20f, 0), 8f * Time.deltaTime);
 
-           
+            if(isSliding && touchingGround){
+                rb.AddForce(transform.right * -outwardsDriftForce * Time.deltaTime, ForceMode.Acceleration);
+            }
+        } else {
+            transform.GetChild(0).localRotation = Quaternion.Lerp(transform.GetChild(0).localRotation, Quaternion.Euler(0, 0f, 0), 8f * Time.deltaTime);
         }
 
-
+}
         steerAmount = realSpeed > 30 ? realSpeed / 4 * steerDirection : steerAmount = realSpeed / 1.5f * steerDirection;
 
         steerDirVect = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y + steerAmount, transform.eulerAngles.z);
 
         transform.eulerAngles = Vector3.Lerp(transform.eulerAngles, steerDirVect, 3 * Time.deltaTime);
     }
-
- 
 
     private void groundNormalRotation(){
         RaycastHit hit;
