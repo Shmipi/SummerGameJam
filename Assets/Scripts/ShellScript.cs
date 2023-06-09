@@ -9,7 +9,7 @@ public class ShellScript : MonoBehaviour
 
     PlayerPowerUpBox pw;
     GameObject pa;
-    bool hitPlayerForTheFirstTime = true;
+   
     int hitcounter = 0;
 
 
