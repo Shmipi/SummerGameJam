@@ -27,6 +27,7 @@ public class PlayerPowerUpBox : MonoBehaviour
         if (playerController.secondPlayer == false)
         {
             GameObject pc = GameObject.Find("PlayerCanvas");
+            Debug.Log(pc);
             powerImage = pc.GetComponentInChildren<PowerUpImage>();
         }
         else

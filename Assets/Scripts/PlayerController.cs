@@ -92,19 +92,65 @@ public class PlayerController : MonoBehaviour
 
         float steerAmount;
 
-if(secondPlayer == true){
-{
-
 
         if(driftLeft && !driftRight){
-            steerDirection = Input.GetKey(KeyCode.UpArrow) < 0 ? -1.5f : -0.5f;
+
+            if(secondPlayer == false)
+            {
+
+                if (Input.GetKey(KeyCode.A))
+                {
+                    steerDirection = -1.5f; // minus
+                }
+                if (Input.GetKey(KeyCode.D))
+                {
+                    steerDirection = -0.5f; // plus
+                }
+            }
+            else
+            {
+                if (Input.GetKey(KeyCode.LeftArrow))
+                {
+                    steerDirection = -1.5f; // minus
+                }
+                if (Input.GetKey(KeyCode.RightArrow))
+                {
+                    steerDirection = -0.5f; // plus
+                }
+            }
+          
+
+            //steerDirection = Input.GetAxis("Horizontal") < 0 ? -1.5f : -0.5f;
             transform.GetChild(0).localRotation = Quaternion.Lerp(transform.GetChild(0).localRotation, Quaternion.Euler(0, -20f, 0), 8f * Time.deltaTime);
 
             if(isSliding && touchingGround){
                 rb.AddForce(transform.right * outwardsDriftForce * Time.deltaTime, ForceMode.Acceleration);
             }
         } else if(driftRight && !driftLeft){
-            steerDirection = Input.GetAxis("Horizontal") > 0 ? 1.5f : 0.5f;
+            if (secondPlayer == false)
+            {
+
+                if (Input.GetKey(KeyCode.A))
+                {
+                    steerDirection = 1.5f; // minus
+                }
+                if (Input.GetKey(KeyCode.D))
+                {
+                    steerDirection = 0.5f; // plus
+                }
+            }
+            else
+            {
+                if (Input.GetKey(KeyCode.LeftArrow))
+                {
+                    steerDirection = 1.5f; // minus
+                }
+                if (Input.GetKey(KeyCode.RightArrow))
+                {
+                    steerDirection = 0.5f; // plus
+                }
+            }
+            //steerDirection = Input.GetAxis("Horizontal") > 0 ? 1.5f : 0.5f;
             transform.GetChild(0).localRotation = Quaternion.Lerp(transform.GetChild(0).localRotation, Quaternion.Euler(0, 20f, 0), 8f * Time.deltaTime);
 
             if(isSliding && touchingGround){
@@ -113,7 +159,7 @@ if(secondPlayer == true){
         } else {
             transform.GetChild(0).localRotation = Quaternion.Lerp(transform.GetChild(0).localRotation, Quaternion.Euler(0, 0f, 0), 8f * Time.deltaTime);
         }
-}else{
+
 
 
         if(driftLeft && !driftRight){
@@ -134,7 +180,6 @@ if(secondPlayer == true){
             transform.GetChild(0).localRotation = Quaternion.Lerp(transform.GetChild(0).localRotation, Quaternion.Euler(0, 0f, 0), 8f * Time.deltaTime);
         }
 
-}
         steerAmount = realSpeed > 30 ? realSpeed / 4 * steerDirection : steerAmount = realSpeed / 1.5f * steerDirection;
 
         steerDirVect = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y + steerAmount, transform.eulerAngles.z);
